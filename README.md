@@ -1,5 +1,7 @@
 # lightrpc
 简单轻量的rpc  
+使用netty传输，protostuff序列化。  
+主要是支持1对1的情况，做长连接。暂时没有集群化。
 客户端使用
 ```
 		Client.connect("127.0.0.1", 6161);
