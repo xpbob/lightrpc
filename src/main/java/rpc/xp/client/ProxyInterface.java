@@ -6,6 +6,7 @@ import java.lang.reflect.Proxy;
 import java.util.UUID;
 import java.util.concurrent.SynchronousQueue;
 
+import rpc.xp.client.zk.Observer;
 import rpc.xp.common.RpcRequest;
 
 public class ProxyInterface {
@@ -23,7 +24,7 @@ public class ProxyInterface {
 				request.setId(id);
 				SynchronousQueue queue = new SynchronousQueue();
 				ResultInfo.putSunchronousQuee(id, queue);
-				Client.write(request);
+				Observer.send(request, clazz.getName());
 				return queue.take();
 			}
 		});
