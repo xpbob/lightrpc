@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Random;
 import java.util.Set;
 
 import com.alibaba.fastjson.JSONObject;
@@ -35,9 +36,10 @@ public class Observer implements InfoCallBack {
 
 	public static void send(RpcRequest request, String className) {
 		Set<Client> set = services.get(className);
-		for (Client client : set) {
+		if (set != null && !set.isEmpty()) {
+			Client[] array = set.toArray(new Client[0]);
+			Client client = array[new Random().nextInt(array.length)];
 			client.write(request);
-			break;
 		}
 	}
 
