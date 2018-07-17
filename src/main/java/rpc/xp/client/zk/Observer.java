@@ -38,6 +38,7 @@ public class Observer implements InfoCallBack {
 		Set<Client> set = services.get(className);
 		if (set != null && !set.isEmpty()) {
 			Client[] array = set.toArray(new Client[0]);
+			//random 
 			Client client = array[new Random().nextInt(array.length)];
 			client.write(request);
 		}
